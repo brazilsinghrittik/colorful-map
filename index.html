@@ -5,12 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Colorful Map</title>
   <!-- Leaflet CSS -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet/dist/leaflet.css"
-  />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <!-- Leaflet Heatmap -->
+  <script src="https://unpkg.com/leaflet-heat/dist/leaflet-heat.js"></script>
   <style>
     /* Make sure the map takes up the full page */
     #map {
@@ -29,14 +28,16 @@
 
     // Add a colorful marker
     var marker = L.marker([51.5, -0.09]).addTo(map);
-    marker.bindPopup("<b>Hello World!</b><br>I'm a colorful marker.");
-    
+    marker.bindPopup("<b>Hello World!</b><br>I'm a colorful marker.")
+          .openPopup();
+
     // Add a heatmap (optional)
     var heat = L.heatLayer(
       [
-        [51.5, -0.09],
-        [51.49, -0.08],
-        [51.51, -0.07],
+        [51.5, -0.09, 0.5], // Format: [latitude, longitude, intensity]
+        [51.49, -0.08, 0.7],
+        [51.51, -0.07, 0.9],
+        [51.52, -0.08, 1]
       ],
       { radius: 25 }
     ).addTo(map);
