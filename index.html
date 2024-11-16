@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Colorful Map</title>
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet/dist/leaflet.css"
+  />
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <style>
+    /* Make sure the map takes up the full page */
+    #map {
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+    // Initialize the map and set the default view
+    var map = L.map("map").setView([51.505, -0.09], 13);
+
+    // Add OpenStreetMap tile layer (background)
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
+
+    // Add a colorful marker
+    var marker = L.marker([51.5, -0.09]).addTo(map);
+    marker.bindPopup("<b>Hello World!</b><br>I'm a colorful marker.");
+    
+    // Add a heatmap (optional)
+    var heat = L.heatLayer(
+      [
+        [51.5, -0.09],
+        [51.49, -0.08],
+        [51.51, -0.07],
+      ],
+      { radius: 25 }
+    ).addTo(map);
+  </script>
+</body>
+</html>
